@@ -19,7 +19,7 @@ request.onload=function(){
 var res=JSON.parse(this.response);
 //console.log(result);
 var fin= res.filter((ele)=>ele.population<200000)
-console.log(fin);
+var f= fin.map((ele=>console.log(ele.name.common)))
 }
 
 // c.//Print the following details name, capital, flag using forEach function.
@@ -60,12 +60,7 @@ request.open ("GET","https://restcountries.com/v3.1/all");
 request.send();
 request.onload=function(){ 
 var rlt=JSON.parse(request.response);
-var currencies= rlt.filter((x)=>{
-    for(var i in currencies){
-        if(x.currencies[i].code ==="USD"){
-            return continents;
-        }
-    }
-})
-console.log(currencies);
+var currency= rlt.filter((value)=> value.currencies && value.currencies.USD)
+currency.forEach((value)=>
+console.log(value.name.common))
 }
